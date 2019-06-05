@@ -245,3 +245,4 @@ tags
 /tests.py
 /tests/
 /qualifier.py
+/q_*

@@ -47,7 +47,7 @@ class Suite:
             curses.A_REVERSE | blue_bg
         )
 
-        global_progress = GlobalProgress(18, self.screen)
+        global_progress = GlobalProgress(self.screen)
 
         current_line = 4
 

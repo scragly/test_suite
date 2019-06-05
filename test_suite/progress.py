@@ -4,7 +4,7 @@ import curses
 class Progress:
     line = None
 
-    def __init__(self, total, stdscr, name=None, parent=None):
+    def __init__(self, stdscr, name=None, parent=None, total=0):
         self.total = total
         self.label = f"{name} Stage:" if name else "Total Progress:"
         self.screen = stdscr

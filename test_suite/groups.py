@@ -22,8 +22,9 @@ class TestGroup:
         self.tests = self.get_tests()
         self.total = len(self.tests)
         self.progress = GroupProgress(
-            self.total, stdscr, self.name, global_progress
+            stdscr, self.name, global_progress, self.total
         )
+        global_progress.total += self.total
         self.update_display()
 
     def get_tests(self):
