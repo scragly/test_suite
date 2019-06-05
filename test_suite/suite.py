@@ -63,10 +63,11 @@ class Suite:
             group.run_tests()
 
         self.screen.addstr(
-            current_line+2, 0,
+            current_line, 0,
             f"{'Tests Complete - Press Enter to Close':^90}",
             curses.A_BOLD
         )
+
         curses.curs_set(0)
         self.screen.refresh()
 
