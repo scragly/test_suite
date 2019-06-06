@@ -1,7 +1,7 @@
 import curses
 import sys
 
-from .progress import GlobalProgress
+from .progress import Progress
 from .groups import TestGroup
 
 
@@ -40,16 +40,15 @@ class Suite:
         curses.init_pair(2, curses.COLOR_GREEN, -1)
         curses.init_pair(3, curses.COLOR_YELLOW, -1)
         curses.init_pair(4, curses.COLOR_BLACK, curses.COLOR_CYAN)
-        blue_bg = curses.color_pair(4)
+        curses.init_pair(5, curses.COLOR_BLACK, curses.COLOR_WHITE)
 
         self.screen.addstr(
-            0, 0, f"{self.title:^90}",
-            curses.A_REVERSE | blue_bg
+            0, 0, f"{self.title:^90}", curses.color_pair(4) | curses.A_REVERSE | curses.A_BOLD
         )
 
-        global_progress = GlobalProgress(self.screen)
+        global_progress = Progress(self.screen)
 
-        current_line = 4
+        current_line = 3
 
         groups = []
         for Group in self.groups:

@@ -38,7 +38,7 @@ class Test:
     def display_color(self):
         colors = {
             TestStatus.waiting: curses.A_DIM,
-            TestStatus.in_progress: curses.A_DIM | curses.color_pair(4),
+            TestStatus.in_progress: curses.A_REVERSE | curses.color_pair(3),
             TestStatus.passed: curses.A_BOLD | curses.color_pair(2),
             TestStatus.failed: curses.A_BOLD | curses.color_pair(1)
         }
@@ -71,7 +71,7 @@ class Test:
     def update_display(self):
         self.update_line(0,  f"{'':^74}", self.display_color)
         self.update_line(1, f"{self.status:<11}", self.display_color)
-        self.update_line(15, f"{self.description:<68}", self.display_color)
+        self.update_line(14, f"{self.description:<68}", self.display_color)
         if self.value is not None:
             value = str(self.value).ljust(8)
             self.update_line(82, value, self.display_color)

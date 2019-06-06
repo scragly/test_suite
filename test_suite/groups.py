@@ -2,7 +2,7 @@ import curses
 import inspect
 
 from .tests import Test
-from .progress import GroupProgress
+from .progress import Progress
 
 
 class TestGroup:
@@ -21,11 +21,11 @@ class TestGroup:
         self.completed = 0
         self.tests = self.get_tests()
         self.total = len(self.tests)
-        self.progress = GroupProgress(
-            stdscr, self.name, global_progress, self.total
+        self.progress = Progress(
+            stdscr, f"{self.name}:", global_progress, self.total, self.line
         )
         global_progress.total += self.total
-        self.update_display()
+        # self.update_display()
 
     def get_tests(self):
         members = (m[1] for m in inspect.getmembers(self, self.is_test))
@@ -56,10 +56,12 @@ class TestGroup:
             self.completed += 1
             if result:
                 self.passed += 1
+                self.progress.increment(True)
+            else:
+                self.progress.increment(False)
 
             test.update_display()
-            self.progress.increment()
-            self.update_display()
+            # self.update_display()
 
     @property
     def display_color(self):
