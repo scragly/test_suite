@@ -4,7 +4,13 @@ This is a basic curses-based test gui that was built for fun by Scragly during t
 
 To create a collection of tests for an event, you need to first define a TestGroup with methods containing Tests.
 
-The function that's to be tested is accessible via `self.function`.
+A test group must have a class attribute of `name` that defines the display name for the group.
+
+Test methods must be named with `test_` at the beginning so they are detected.
+
+Test methods must have a docstring, with the first two characters being used for the number used when sorting, and the remainder being the display description of the test.
+
+Test methods can access the test function via `self.function`.
 
 Test methods can return one of two ways:
  - a single Truthy/Falsy value representing if the test passed or not
