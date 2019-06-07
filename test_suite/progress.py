@@ -47,7 +47,9 @@ class Progress:
 
         # pad values
         n_to_pad = self.total - len(self.chunks)
-        padded_values = itertools.chain(self.chunks, itertools.repeat(None, n_to_pad))
+        padded_values = itertools.chain(
+            self.chunks, itertools.repeat(None, n_to_pad)
+        )
 
         # basically more_itertools.divide
         q, r = divmod(stretching_to, self.total)
@@ -61,7 +63,8 @@ class Progress:
         fraction_start = 81
         fraction_end = 90
         fraction_color = curses.color_pair(5)
-        fraction = f" {self.current}/{self.total}"
+        passed = sum(self.chunks)
+        fraction = f" {passed}/{self.total}"
         self.write(fraction_start, fraction_end, fraction, fraction_color)
 
     def write_label(self):
@@ -79,7 +82,7 @@ class Progress:
         self.current += 1
         self.update()
         if self.parent:
-            self.parent.increment()
+            self.parent.increment(passed)
 
     def update(self):
         self.write_label()
