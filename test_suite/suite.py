@@ -6,11 +6,13 @@ from .groups import TestGroup
 
 
 class Suite:
-    def __init__(self, title, function, *test_groups):
+    def __init__(self, title, function, *test_groups, on_finish=None):
         self.function = function
         self.title = title
         self.groups = test_groups or TestGroup.groups
+        self.on_finish = on_finish
         self.screen = None
+        self.results = {}
         try:
             self.screen = self.init_screen()
             self.run()
@@ -59,7 +61,8 @@ class Suite:
             groups.append(group)
 
         for group in groups:
-            group.run_tests()
+            results = group.run_tests()
+            self.results[group.__class__.__name__] = results
 
         self.screen.addstr(
             current_line, 0,
@@ -69,6 +72,9 @@ class Suite:
 
         curses.curs_set(0)
         self.screen.refresh()
+
+        if self.on_finish:
+            self.on_finish(self)
 
         try:
             while True:

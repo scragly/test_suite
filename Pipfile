@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 fuzzywuzzy = "*"
 python-levenshtein = "*"
+numpy = "*"
+pyperclip = "*"
 
 [dev-packages]
 "flake8" = "*"

@@ -51,6 +51,7 @@ class TestGroup:
         return inspect.ismethod(member) and member.__name__.startswith('test_')
 
     def run_tests(self):
+        results = []
         for test in self.tests:
             result, value = test()
             self.completed += 1
@@ -61,7 +62,9 @@ class TestGroup:
                 self.progress.increment(False)
 
             test.update_display()
-            # self.update_display()
+            results.append(value)
+
+        return results
 
     @property
     def display_color(self):
