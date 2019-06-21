@@ -54,6 +54,8 @@ class Test:
 
         try:
             result = self.callable()
+        except KeyboardInterrupt:
+            result = False, "Stopped"
         except Exception as e:
             result = False, type(e).__name__
 
