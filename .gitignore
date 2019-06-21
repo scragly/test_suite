@@ -242,3 +242,4 @@ tags
 /processed/
 /qualifier.py
 /q_*
+/*#*.py

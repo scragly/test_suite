@@ -55,7 +55,6 @@
         },
         "pyperclip": {
             "hashes": [
-                "sha256:1156e913128eb31c8ceda084354b9744eb01231e0987168187fe5630db3e26e4",
                 "sha256:979325468ccf682104d5dcaf753f869868100631301d3e72f47babdea5700d1c"
             ],
             "index": "pypi",
